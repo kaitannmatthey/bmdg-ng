@@ -1,5 +1,13 @@
-<h1>{{title}}</h1>
-<table class="table">
+<div class='component-content'>
+    <div class='lefthalf'>
+        <span class='component-title'>{{title}}</span>
+        <span><a routerLink='/credits/create'>
+                <img id='createnew' width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
+        </span>
+    </div>
+</div>
+<p *ngIf='!credits'>Loading...</p>
+<table class="table" *ngIf='credits'>
     <tr>
         <th>ID</th>
         <th>Actor</th>
@@ -7,12 +15,15 @@
         <th>Role</th>
         <th>Action</th>
     </tr>
-    
     <tr *ngFor="let c of credits">
         <td>{{c.id}}</td>
         <td>{{c.actor.lastName + ", " + c.actor.firstName}}</td>
         <td>{{c.movie.title}}</td>
         <td>{{c.role}}</td>
-        <td>Details | Edit</td>
+        <td>
+            <a routerLink='/credits/detail/{{c.id}}'><img src="assets/details.png" width='20' height="20" title="Details"></a> 
+            | 
+            <a routerLink='/credits/edit/{{c.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
+        </td>
     </tr>
 </table>
